@@ -8,6 +8,7 @@ public class EnemySpawner : MonoBehaviour
     public bool EnableSpawner;
     public int MaxEnemyCant;
     private int CantEnemies;
+    private bool messageShown;
 
     public float counter;
 
@@ -19,18 +20,20 @@ public class EnemySpawner : MonoBehaviour
     {
         if (EnableSpawner)
         {
-            counter += Time.deltaTime;
-            Debug.Log("TIME VALE "+counter);
-            if (counter > spawnInterval)
+            if (CantEnemies < MaxEnemyCant)
             {
-
-
+                counter += Time.deltaTime;
+                if (counter > spawnInterval)
+                {
                     SpawnEnemy();
-
-
-                counter = 0f;
-                CantEnemies++;
-
+                    counter = 0f;
+                    CantEnemies++;
+                }
+            }
+            else if (!messageShown)
+            {
+                Debug.Log("LLEGO AL LIMITE DE ENEMIGOS");
+                messageShown = true;
             }
         }
     }
