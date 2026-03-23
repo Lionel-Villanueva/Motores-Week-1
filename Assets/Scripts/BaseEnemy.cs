@@ -22,6 +22,7 @@ public class BaseEnemy : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             print("Player Detectado");
+            playerTransform = other.transform;
         }
     }
     private void OnTriggerExit(Collider other)
@@ -29,6 +30,7 @@ public class BaseEnemy : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             print("Player se fue");
+            playerTransform = null;
         }
     }
     void OnDrawGizmos()
@@ -38,10 +40,8 @@ public class BaseEnemy : MonoBehaviour
 
         if (playerTransform != null)
         {
-            Gizmos.color = Color.yellow;
+            Gizmos.color = Color.blue;
             Gizmos.DrawLine(transform.position, playerTransform.position);
-
         }
-
     }
 }
